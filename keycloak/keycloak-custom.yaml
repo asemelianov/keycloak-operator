@@ -75,7 +75,7 @@ spec:
 
             resources:
               requests:
-                cpu: "2"
+                cpu: "3"
                 memory: "1250M"
               limits:
                 cpu: "6"
