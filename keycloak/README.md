@@ -1,8 +1,8 @@
 # Keycloak operator
 
-## List of manifests:
+## List of manifests
 
-Files:
+All files:
     - ClusterRole.yaml
     - ClusterRoleBinding.yaml
     - Deployment.yaml
