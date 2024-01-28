@@ -42,7 +42,7 @@ spec:
       value: 'true'
   ingress:
     enabled: false
-  instances: 3
+  instances: 2
   unsupported:
     podTemplate:
       spec:
