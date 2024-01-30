@@ -33,8 +33,8 @@ spec:
   additionalOptions:
     - name: hostname-strict-https
       value: "false"
-  #  - name: hostname-port
-  #    value: "8443"
+    - name: hostname-port
+      value: "8080"
     - name: log-console-output
       value: json
     - name: metrics-enabled
@@ -76,8 +76,6 @@ spec:
                   -Xms512m -Xmx1524m -Djgroups.thread_dumps_threshold=1
             args: ["start", "--cache-stack=kubernetes"]
             ports:
-              - name: http
-                containerPort: 8080
               - name: https
                 containerPort: 8443
 
