@@ -26,8 +26,6 @@ spec:
   http:
     tlsSecret: keycloak-tls-secret
     httpEnabled: true
-    httpPort: 8080
-    httpsPort: 8443
   hostname:
     hostname: test.keycloak.org
     strict: false
@@ -77,9 +75,11 @@ spec:
                 value: >
                   -Xms512m -Xmx1524m -Djgroups.thread_dumps_threshold=1
             args: ["start", "--cache-stack=kubernetes"]
-      #      ports:
-      #        - name: http
-      #          containerPort: 8080
+            ports:
+              - name: http
+                containerPort: 8080
+              - name: http
+                containerPort: 8443
 
             resources:
               requests:
