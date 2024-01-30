@@ -34,7 +34,7 @@ spec:
     - name: hostname-strict-https
       value: "false"
     - name: hostname-port
-      value: "8443"
+      value: "8080"
     - name: log-console-output
       value: json
     - name: metrics-enabled
