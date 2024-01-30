@@ -54,12 +54,16 @@ spec:
                 value: "true"
               - name: KEYCLOAK_HTTP_ENABLED
                 value: "true"
+      #        - name: KEYCLOAK_EXTRA_ARGS
+      #          value: "-Dkeycloak.frontendUrl=https://test.keycloak.org:8080/auth"
               - name: KEYCLOAK_HTTP_RELATIVE_PATH
                 value: "/auth"
               - name: KEYCLOAK_HOSTNAME_URL
-                value: "https://test.keycloak.org:8443"
-              - name: KC_HOSTNAME_ADMIN_URL
-                value: "https://test.keycloak.org:8443"
+                value: "https://test.keycloak.org/keycloak/auth/"
+              - name: KEYCLOAK_HOSTNAME_ADMIN_URL
+                value: "https://test.keycloak.org/keycloak/auth/"
+      #        - name: KEYCLOAK_HOSTNAME_PORT
+      #          value: "8080"
       #        - name: KEYCLOAK_USER
       #          value: "admin"
       #        - name: KEYCLOAK_PASSWORD
@@ -72,6 +76,9 @@ spec:
                 value: >
                   -Xms512m -Xmx1524m -Djgroups.thread_dumps_threshold=1
             args: ["start", "--cache-stack=kubernetes"]
+            ports:
+              - name: http
+                containerPort: 8080
 
             resources:
               requests:
