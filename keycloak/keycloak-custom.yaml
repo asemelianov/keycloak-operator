@@ -53,14 +53,14 @@ spec:
                 value: "true"
               - name: KEYCLOAK_HTTP_ENABLED
                 value: "true"
-              - name: KEYCLOAK_EXTRA_ARGS
-                value: "-Dkeycloak.frontendUrl=http://test.keycloak.org:8443/auth"
+      #        - name: KEYCLOAK_EXTRA_ARGS
+      #          value: "-Dkeycloak.frontendUrl=http://test.keycloak.org:8443/auth"
       #        - name: KEYCLOAK_HTTP_RELATIVE_PATH
       #          value: "/auth"
               - name: KEYCLOAK_HOSTNAME_URL
-                value: "https://test.keycloak.org"
+                value: "https://test.keycloak.org/keycloak/auth/"
               - name: KEYCLOAK_HOSTNAME_ADMIN_URL
-                value: "https://test.keycloak.org"
+                value: "https://test.keycloak.org/keycloak/auth/"
       #        - name: KEYCLOAK_HOSTNAME_PORT
       #          value: "8080"
       #        - name: KEYCLOAK_USER
