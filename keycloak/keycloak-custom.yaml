@@ -34,7 +34,7 @@ spec:
     - name: hostname-strict-https
       value: "false"
     - name: hostname-port
-      value: "8080"
+      value: "8443"
     - name: log-console-output
       value: json
     - name: metrics-enabled
@@ -58,9 +58,9 @@ spec:
               - name: KEYCLOAK_HTTP_RELATIVE_PATH
                 value: "/auth"
               - name: KEYCLOAK_HOSTNAME_URL
-                value: "https://test.keycloak.org/keycloak/auth/"
+                value: "https://test.keycloak.org"
               - name: KEYCLOAK_HOSTNAME_ADMIN_URL
-                value: "https://test.keycloak.org/keycloak/auth/"
+                value: "https://test.keycloak.org"
       #        - name: KEYCLOAK_HOSTNAME_PORT
       #          value: "8080"
       #        - name: KEYCLOAK_USER
