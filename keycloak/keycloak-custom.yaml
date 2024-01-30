@@ -54,13 +54,11 @@ spec:
               - name: KEYCLOAK_HTTP_ENABLED
                 value: "true"
               - name: KEYCLOAK_HTTP_RELATIVE_PATH
-                value: "/auth"
+                value: "/auth/"
               - name: KEYCLOAK_HOSTNAME_URL
                 value: "https://test.keycloak.org/keycloak/auth"
               - name: KEYCLOAK_HOSTNAME_ADMIN_URL
                 value: "https://test.keycloak.org/keycloak/auth"
-              - name: KEYCLOAK_FRONTEND_URL
-                value: "https://test.keycloak.org/auth"
       #        - name: KEYCLOAK_HOSTNAME_PORT
       #          value: "8080"
       #        - name: KEYCLOAK_USER
