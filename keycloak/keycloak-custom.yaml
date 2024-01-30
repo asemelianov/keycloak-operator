@@ -55,12 +55,12 @@ spec:
                 value: "true"
       #        - name: KEYCLOAK_EXTRA_ARGS
       #          value: "-Dkeycloak.frontendUrl=http://test.keycloak.org:8443/auth"
-              - name: KC_HTTP_RELATIVE_PATH
-                value: "/auth"
-              - name: KC_HOSTNAME_URL
-                value: "https://test.keycloak.org/keycloak/auth/"
-              - name: KC_HOSTNAME_ADMIN_URL
-                value: "https://test.keycloak.org/keycloak/auth/"
+              - name: KEYCLOAK_HTTP_RELATIVE_PATH
+                value: "/auth/admin"
+              - name: KEYCLOAK_HOSTNAME_URL
+                value: "https://test.keycloak.org/keycloak/auth/admin"
+              - name: KEYCLOAK_HOSTNAME_ADMIN_URL
+                value: "https://test.keycloak.org/keycloak/auth/admin"
       #        - name: KEYCLOAK_HOSTNAME_PORT
       #          value: "8080"
       #        - name: KEYCLOAK_USER
