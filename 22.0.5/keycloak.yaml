@@ -1,0 +1,84 @@
+---
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  labels:
+    app: keycloak
+  name: keycloak
+spec:
+  db:
+    vendor: postgres
+    host: keycloak-operator-db
+    poolMinSize: 30
+    poolInitialSize: 30
+    poolMaxSize: 30
+    usernameSecret:
+      name: keycloak-db-secret
+      key: username
+    passwordSecret:
+      name: keycloak-db-secret
+      key: password
+  features:
+    enabled:
+      - multi-site
+  http:
+    httpsPort: 8443
+    tlsSecret: keycloak-tls-secret
+    httpEnabled: false
+  hostname:
+    hostname: test.keycloak.org
+    strict: false
+    strictBackchannel: false
+  additionalOptions:
+    - name: hostname-strict-https
+      value: "false"
+    - name: hostname-port
+      value: "8443"
+    - name: log-console-output
+      value: json
+    - name: metrics-enabled
+      value: 'true'
+    - name: http-relative-path
+      value: "/auth"
+  ingress:
+    enabled: true
+  instances: 2
+  unsupported:
+    podTemplate:
+      spec:
+        containers:
+          - env:
+              - name: PROXY_ADDRESS_FORWARDING
+                value: "true"
+              - name: KEYCLOAK_HEALTH_ENABLED
+                value: "true"
+              - name: KEYCLOAK_HTTP_ENABLED
+                value: "true"
+      #        - name: KEYCLOAK_HTTP_RELATIVE_PATH
+      #          value: "/auth"
+              - name: KEYCLOAK_HOSTNAME_URL
+                value: "https://test.keycloak.org/keycloak/auth"
+              - name: KEYCLOAK_HOSTNAME_ADMIN_URL
+                value: "https://test.keycloak.org/keycloak/auth"
+      #        - name: KEYCLOAK_HOSTNAME_PORT
+      #          value: "8080"
+              - name: KEYCLOAK_USER
+                value: "admin"
+              - name: KEYCLOAK_PASSWORD
+                value: "admin"
+              - name: KEYCLOACK_PROXY
+                value: "edge"
+              - name: 'QUARKUS_THREAD_POOL_MAX_THREADS'
+                value: "66"
+              - name: JAVA_OPTS_APPEND
+                value: >
+                  -Xms512m -Xmx1524m -Djgroups.thread_dumps_threshold=1
+            args: ["start", "--cache-stack=kubernetes"]
+
+            resources:
+              requests:
+                cpu: "2"
+                memory: "1250M"
+              limits:
+                cpu: "6"
+                memory: "2250M"

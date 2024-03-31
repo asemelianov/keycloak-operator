@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    app.quarkus.io/build-timestamp: 2023-10-24 - 10:31:34 +0000
+  labels:
+    app.kubernetes.io/managed-by: quarkus
+    app.kubernetes.io/version: 22.0.5
+    app.kubernetes.io/name: keycloak-operator
+  name: keycloak-operator

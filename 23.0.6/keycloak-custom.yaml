@@ -1,0 +1,82 @@
+---
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  labels:
+    app: keycloak
+  name: keycloak
+spec:
+  db:
+    vendor: postgres
+    host: keycloak-operator-db
+    poolMinSize: 30
+    poolInitialSize: 30
+    poolMaxSize: 30
+    usernameSecret:
+      name: keycloak-db-secret
+      key: username
+    passwordSecret:
+      name: keycloak-db-secret
+      key: password
+  features:
+    enabled:
+      - multi-site
+  http:
+    tlsSecret: keycloak-tls-secret
+    httpEnabled: true
+  hostname:
+    hostname: keycloak.infra.tbhub.ru
+    strict: false
+    strictBackchannel: false
+  additionalOptions:
+    - name: hostname-strict-https
+      value: "false"
+    - name: hostname-port
+      value: "8443"
+    - name: log-console-output
+      value: json
+    - name: metrics-enabled
+      value: 'true'
+    - name: http-relative-path
+      value: "/auth"
+#    - name: sslRequired
+#      value: "NONE"
+  ingress:
+    enabled: false
+  instances: 1
+  unsupported:
+    podTemplate:
+      spec:
+        containers:
+          - env:
+              - name: KEYCLOAK_ADMIN
+                value: admin
+              - name: KEYCLOAK_ADMIN_PASSWORD
+                value: admin
+              - name: PROXY_ADDRESS_FORWARDING
+                value: "true"
+              - name: KEYCLOAK_HEALTH_ENABLED
+                value: "true"
+              - name: KEYCLOAK_HTTP_ENABLED
+                value: "true"
+              - name: KEYCLOAK_HOSTNAME_URL
+                value: "https://keycloak.infra.tbhub.ru/keycloak/auth"
+              - name: KEYCLOAK_HOSTNAME_ADMIN_URL
+                value: "https://keycloak.infra.tbhub.ru/keycloak/auth"
+              - name: KEYCLOACK_PROXY
+                value: "edge"
+              - name: 'QUARKUS_THREAD_POOL_MAX_THREADS'
+                value: "66"
+              - name: JAVA_OPTS_APPEND
+                value: >
+                  -Xms512m -Xmx1524m -Djgroups.thread_dumps_threshold=1
+            args: ["start", "--cache-stack=kubernetes"]
+
+            resources:
+              requests:
+                cpu: "1"
+                memory: "1Gi"
+              limits:
+                cpu: "6"
+                memory: "2250M"
+
